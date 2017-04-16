@@ -50,9 +50,9 @@ def save_file(file_path,uid=-1):
     return {'message': 'Uploaded succesfully'}
 
 def get_albums(last_image_index, uid=-1):
+    albums = []
     try:
         data = list(collection.find({'created_by':uid}).sort("created_at",pymongo.DESCENDING))[last_image_index:last_image_index+10]
-        albums = []
         for obj in data:
             album = {}
             album['date_str'] = datetime.fromtimestamp(obj['created_at']).strftime('%b, %d')
@@ -61,6 +61,7 @@ def get_albums(last_image_index, uid=-1):
             album['img_id'] = obj['file_id']
             albums.append(album)
     except:
+        print "Error in get_albums!"
         return [{"error": "Server error"}]
 
     return albums

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request, send_from_directory
+from flask import Flask, render_template, json, request, send_from_directory, jsonify
 
 from project import app
 import model
@@ -30,16 +30,17 @@ def send_img(filename):
 
 @app.route('/get_page_data', methods=['POST'])
 def get_page_data():
-
     last_image_index = request.json.get('last_image_index', None)
     if not last_image_index:
         last_image_index = 0
 
     response = {}
     albums = model.get_albums(last_image_index)
+    if not albums:
+        return jsonify({})
     error = albums[0].get('error', None)
     if not error:
-        response['albums'] = albums
+        response['images'] = albums
         response['last_image_index'] = last_image_index+10
-        return json.dumps(response)
-    return json.dumps(albums[0])
+        return jsonify(response)
+    return jsonify(albums[0])
