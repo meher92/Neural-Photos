@@ -12,7 +12,7 @@ def save_file_in_db(filename, created_at, uid=-1, caption=''):
     collection.insert_one(
         {
             "filename": filename,
-            "created_ts": created_at,
+            "created_at": created_at,
             "created_by": uid,
             "caption": caption
         }
