@@ -1,8 +1,6 @@
 from flask import Flask, render_template, json, request, send_from_directory
-from flask_pymongo import PyMongo
-from app import app
-
-mongo = PyMongo(app)
+from project import app
+import model
 
 @app.route('/')
 def main():

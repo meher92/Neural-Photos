@@ -1,0 +1,4 @@
+Modal Ref:
+http://ashleydw.github.io/lightbox/
+File upload python flask
+http://code.runnable.com/UiPcaBXaxGNYAAAL/how-to-upload-a-file-to-the-server-in-flask-for-python
