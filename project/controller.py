@@ -9,9 +9,13 @@ import model
 def main():
     return render_template('index.html')
 
+@app.route('/file_upload_template')
+def file_upload_template():
+    return render_template('file_upload.html')
+
 @app.route('/upload_image', methods=['POST'])
 def caption_image():
-    file = request.files['image_file']
+    file = request.files['file']
     if file:
         response = model.save_file(file)
     else:

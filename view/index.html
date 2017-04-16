@@ -29,7 +29,6 @@
 </head>
 
 <body>
-
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -45,7 +44,7 @@
       <a class="navbar-brand" href="#">Neural Photos</a>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Upload Photo</a></li>
+          <li><a href="/file_upload_template">Upload Photo</a></li>
         </ul>
       </div>
     </div>
@@ -155,19 +154,7 @@
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
   <script src="js/ekko-lightbox.min.js"></script>
-  <script>
-  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-    event.preventDefault();
-    $(this).ekkoLightbox();
-  });
-  var captions = {}
-  function caption_img(img_id) {
-    var caption = 'Caption for image '+ img_id
-    console.log(caption);
-    captions[img_id] = caption
-    $('#img_cptn_'+img_id).text(caption)
-  }
-  </script>
+  <script src="js/neural-photos.js"></script>
 </body>
 
 </html>
