@@ -8,12 +8,13 @@ client = MongoClient(app.config['MONGO_URI'])
 db = client[app.config['MONGO_DBNAME']]
 collection = db.images_collection
 
-def save_file_in_db(filename, created_ts, uid=-1):
+def save_file_in_db(filename, created_at, uid=-1, caption=''):
     collection.insert_one(
         {
             "filename": filename,
-            "created_ts": created_ts,
-            "created_by": uid
+            "created_ts": created_at,
+            "created_by": uid,
+            "caption": caption
         }
     )
 
@@ -24,27 +25,20 @@ def save_file(file):
         if not os.path.exists(app.config['image_upload_path']):
             os.makedirs(app.config['image_upload_path'])
 
-        #check for valid size
-        file.seek(0,2)
-        fsize = file.tell()
-        if fsize > app.config['max_file_size']:
-            response = {"error": "Invalid size"}
-            return response
-
         #check for valid extension
-
         (fname, extension)= os.path.splitext(file.filename)
 
         if extension not in app.config['accepted_file_types']:
             response = {"error": "Invalid extension"}
             return response
+
         #append ts to filename and save to directory
-        created_ts = int(time.time())
-        final_filename = 'uploaded_images/'+fname+'_'+str(created_ts)+extension
+        created_at = time.time()
+        final_filename = 'uploaded_images/'+fname+'_'+str(int(created_at))+extension
         file.save(final_filename)
 
         #add entry to DB
-        save_file_in_db(final_filename, created_ts)
+        save_file_in_db(final_filename, created_at)
 
     except:
         return {"error": "Error"}
