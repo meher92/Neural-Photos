@@ -1,4 +1,5 @@
 import os, time
+from datetime import datetime
 
 from project import app
 from pymongo import MongoClient
@@ -33,8 +34,8 @@ def save_file(file):
             return response
 
         #append ts to filename and save to directory
-        created_at = time.time()
-        final_filename = 'uploaded_images/'+fname+'_'+str(int(created_at))+extension
+        created_at = int(time.time())
+        final_filename = 'uploaded_images/'+fname+'_'+str(created_at)+extension
         file.save(final_filename)
 
         #add entry to DB
