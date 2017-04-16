@@ -2,3 +2,5 @@
 .idea/*
 view/.DS_Store
 *.pyc
+uploaded_images
+uploaded_images/*
