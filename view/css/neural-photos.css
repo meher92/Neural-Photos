@@ -19,3 +19,7 @@ footer {
 .row {
   padding: .3em;
 }
+
+.cptn-btn {
+  float: right;
+}

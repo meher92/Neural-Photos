@@ -45,7 +45,6 @@
       <a class="navbar-brand" href="#">Neural Photos</a>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Caption Photo</a></li>
           <li><a href="#">Upload Photo</a></li>
         </ul>
       </div>
@@ -80,22 +79,22 @@
     </div>
     <div class="row">
       <div class="col-md-3 portfolio-item">
-        <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="example-gallery" data-title="Mountains" data-footer="Custom footer text 1">
+        <a class="lightbox_img" href="https://unsplash.it/1200/768.jpg?image=251" id="img_1" data-toggle="lightbox" data-gallery="example-gallery" data-title="<span id='img_cptn_1'></span>" data-footer="<div><span class='cptn-btn'><button class='btn btn-default' onclick='caption_img(1)'>Caption Button</button></span></div>">
           <img class="img-responsive" src="https://unsplash.it/600.jpg?image=251" alt="">
         </a>
       </div>
       <div class="col-md-3 portfolio-item">
-        <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox" data-gallery="example-gallery" data-title="Tools" data-footer="Custom footer text 2">
+        <a class="lightbox_img" href="https://unsplash.it/1200/768.jpg?image=252" id="img_2" data-toggle="lightbox" data-gallery="example-gallery" data-title="<span id='img_cptn_2'></span>" data-footer="<div><span class='cptn-btn'><button class='btn btn-default' onclick='caption_img(2)'>Caption Button</button></span></div>">
           <img class="img-responsive" src="https://unsplash.it/600.jpg?image=252" alt="">
         </a>
       </div>
       <div class="col-md-3 portfolio-item">
-        <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox" data-gallery="example-gallery" data-title="Earth" data-footer="Custom footer text 3">
+        <a class="lightbox_img" href="https://unsplash.it/1200/768.jpg?image=253" id="img_3" data-toggle="lightbox" data-gallery="example-gallery" data-title="<span id='img_cptn_3'></span>" data-footer="<div><span class='cptn-btn'><button class='btn btn-default' onclick='caption_img(3)'>Caption Button</button></span></div>">
           <img class="img-responsive" src="https://unsplash.it/600.jpg?image=253" alt="">
         </a>
       </div>
       <div class="col-md-3 portfolio-item">
-        <a href="https://unsplash.it/1200/768.jpg?image=254" data-toggle="lightbox" data-gallery="example-gallery" data-title="Trees" data-footer="Custom footer text 4">
+        <a class="lightbox_img" href="https://unsplash.it/1200/768.jpg?image=254" id="img_4" data-toggle="lightbox" data-gallery="example-gallery" data-title="<span id='img_cptn_4'></span>" data-footer="<div><span class='cptn-btn'><button class='btn btn-default' onclick='caption_img(4)'>Caption Button</button></span></div>">
           <img class="img-responsive" src="https://unsplash.it/600.jpg?image=254" alt="">
         </a>
       </div>
@@ -161,6 +160,13 @@
     event.preventDefault();
     $(this).ekkoLightbox();
   });
+  var captions = {}
+  function caption_img(img_id) {
+    var caption = 'Caption for image '+ img_id
+    console.log(caption);
+    captions[img_id] = caption
+    $('#img_cptn_'+img_id).text(caption)
+  }
   </script>
 </body>
 
